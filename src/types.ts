@@ -2,10 +2,13 @@ export interface Internship {
   id: string;
   company: string;
   role: string;
+  roleCn?: string;
   period: string;
   highlights: string[];
-  results: { label: string; value: string }[];
+  highlightsCn?: string[];
+  results: { label: string; labelCn?: string; value: string }[];
   details: string;
+  detailsCn?: string;
 }
 
 export interface Photo {

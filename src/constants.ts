@@ -5,47 +5,67 @@ export const INTERNSHIPS: Internship[] = [
     id: 'tiktok',
     company: 'ByteDance TikTok',
     role: 'Germany Content Product Ops',
+    roleCn: '德国内容产品运营',
     period: '2023 - 2024',
     highlights: [
       '2026 Milan Winter Olympics Ops',
       'Intent decomposition for athlete needs',
       'Proposed "Card + Wiki + Video" integration'
     ],
-    results: [
-      { label: 'Agent Efficiency', value: '+30%' },
-      { label: 'Intent Accuracy', value: '59%' }
+    highlightsCn: [
+      '2026 米兰冬奥会运营',
+      '运动员需求意图分解',
+      '提议“卡片 + 百科 + 视频”集成方案'
     ],
-    details: 'Leveraging AIGC tools to build automated content pipelines.'
+    results: [
+      { label: 'Agent Efficiency', labelCn: 'Agent 效率', value: '+30%' },
+      { label: 'Intent Accuracy', labelCn: '意图准确率', value: '59%' }
+    ],
+    details: 'Leveraging AIGC tools to build automated content pipelines.',
+    detailsCn: '利用 AIGC 工具构建自动化内容流水线。'
   },
   {
     id: 'audi',
     company: 'Audi (China)',
     role: 'Project Management (PMO)',
+    roleCn: '项目管理 (PMO)',
     period: '2022 - 2023',
     highlights: [
       'Standardized project version control',
       'Designed "Async-Sync" collab mechanism',
       'Cross-timezone PMO specialist'
     ],
-    results: [
-      { label: 'Flow Efficiency', value: '+30%' },
-      { label: 'Prep Time', value: '-20%' }
+    highlightsCn: [
+      '标准化项目版本控制',
+      '设计“异步-同步”协作机制',
+      '跨时区 PMO 专家'
     ],
-    details: 'Coordinating global teams for high-stakes automotive projects.'
+    results: [
+      { label: 'Flow Efficiency', labelCn: '流程效率', value: '+30%' },
+      { label: 'Prep Time', labelCn: '准备时间', value: '-20%' }
+    ],
+    details: 'Coordinating global teams for high-stakes automotive projects.',
+    detailsCn: '协调全球团队进行高规格汽车项目。'
   },
   {
     id: 'fastmoss',
     company: 'FastMoss',
     role: 'Germany Product Growth',
+    roleCn: '德国产品增长',
     period: '2023',
     highlights: [
       'UI localization for DACH region',
       'A/B testing for ad copy verification'
     ],
-    results: [
-      { label: 'CTR Increase', value: '+15%' }
+    highlightsCn: [
+      'DACH 地区 UI 本地化',
+      '用于广告文案验证的 A/B 测试'
     ],
-    details: 'Driving growth through data-backed localization strategies.'
+    results: [
+      { label: 'CTR Increase', labelCn: '点击率增长', value: '+15%' }
+    ],
+    details: 'Driving growth through data-backed localization strategies.',
+    detailsCn: '通过数据支持的本地化策略推动增长。'
   }
 ];
 

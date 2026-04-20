@@ -1,7 +1,10 @@
 import { motion } from 'motion/react';
+import { useApp } from '../AppContext';
 import { Linkedin, Instagram, Mail, Moon, Sun } from 'lucide-react';
 
 export default function Header() {
+  const { theme, toggleTheme, language, setLanguage, t } = useApp();
+
   return (
     <motion.header 
       initial={{ y: -20, opacity: 0 }}
@@ -12,52 +15,72 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-4">
           <div className="font-display text-xl font-extrabold tracking-tight text-brand-accent">
-            Kangwei <span className="text-brand-text">Li</span>
+            Kangwei <span className="text-brand-text dark:text-white">Li</span>
           </div>
           
           <div className="hidden md:flex items-center gap-2">
             <div className="pill text-[10px] font-bold uppercase tracking-wider">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-              Available
+              {t('在职', 'Available')}
             </div>
-            <div className="pill text-[10px] font-bold uppercase tracking-wider">
-              <Sun size={12} className="text-brand-accent" />
-              <div className="w-8 h-4 bg-gray-100 rounded-full relative">
-                <div className="absolute left-0.5 top-0.5 w-3 h-3 bg-white shadow-sm rounded-full" />
+            
+            {/* Theme Toggle */}
+            <button 
+              onClick={toggleTheme}
+              className="pill text-[10px] font-bold uppercase tracking-wider hover:border-brand-accent transition-colors group cursor-pointer"
+            >
+              <Sun size={12} className={`${theme === 'light' ? 'text-brand-accent' : 'text-zinc-500'}`} />
+              <div className="w-8 h-4 bg-zinc-100 dark:bg-zinc-800 rounded-full relative">
+                <motion.div 
+                  animate={{ x: theme === 'light' ? 2 : 18 }}
+                  className="absolute top-0.5 w-3 h-3 bg-white dark:bg-brand-accent shadow-sm rounded-full" 
+                />
               </div>
-              <Moon size={12} className="text-gray-300" />
-            </div>
+              <Moon size={12} className={`${theme === 'dark' ? 'text-brand-accent' : 'text-zinc-300'}`} />
+            </button>
           </div>
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {['home', 'internships', 'play', 'connect'].map((item) => (
+          {[
+            { id: 'home', label: t('首页', 'Home') },
+            { id: 'internships', label: t('实习', 'Internships') },
+            { id: 'play', label: t('生活', 'Play') },
+            { id: 'connect', label: t('联系', 'Connect') }
+          ].map((item) => (
             <a 
-              key={item}
-              href={`#${item}`}
-              className="text-xs font-semibold text-brand-text hover:text-brand-accent transition-colors capitalize"
+              key={item.id}
+              href={`#${item.id}`}
+              className="text-xs font-semibold text-brand-text dark:text-white/70 hover:text-brand-accent dark:hover:text-brand-accent transition-colors capitalize"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
 
         {/* Socials & Lang */}
         <div className="flex items-center gap-4">
-          <div className="hidden lg:flex items-center gap-4 text-brand-text/60">
+          <div className="hidden lg:flex items-center gap-4 text-brand-text/60 dark:text-white/40">
             <Linkedin size={18} className="hover:text-brand-accent cursor-pointer transition-colors" />
             <Instagram size={18} className="hover:text-brand-accent cursor-pointer transition-colors" />
             <Mail size={18} className="hover:text-brand-accent cursor-pointer transition-colors" />
           </div>
           
-          <div className="pill bg-gray-50/50">
-            <span className="text-[10px] font-extrabold text-brand-accent">CN</span>
-            <div className="w-6 h-3 bg-gray-200 rounded-full relative">
-               <div className="absolute left-0.5 top-0.5 w-2 h-2 bg-white rounded-full" />
+          {/* Lang Toggle */}
+          <button 
+            onClick={() => setLanguage(language === 'CN' ? 'EN' : 'CN')}
+            className="pill bg-gray-50/50 dark:bg-zinc-900/50 hover:border-brand-accent transition-colors cursor-pointer"
+          >
+            <span className={`text-[10px] font-extrabold ${language === 'CN' ? 'text-brand-accent' : 'text-zinc-400'}`}>CN</span>
+            <div className="w-6 h-3 bg-zinc-200 dark:bg-zinc-800 rounded-full relative">
+               <motion.div 
+                 animate={{ x: language === 'CN' ? 2 : 14 }}
+                 className="absolute top-0.5 w-2 h-2 bg-white dark:bg-brand-accent rounded-full" 
+               />
             </div>
-            <span className="text-[10px] font-extrabold text-gray-300">EN</span>
-          </div>
+            <span className={`text-[10px] font-extrabold ${language === 'EN' ? 'text-brand-accent' : 'text-zinc-400'}`}>EN</span>
+          </button>
         </div>
       </div>
     </motion.header>

@@ -1,10 +1,12 @@
 import { motion, AnimatePresence, Reorder } from 'motion/react';
 import { useRef, useState, ChangeEvent } from 'react';
+import { useApp } from '../AppContext';
 import { MOVIES } from '../constants';
 import { Film, Camera, Sparkles, ChevronLeft, ChevronRight, X, Maximize2, Plus, Image as ImageIcon, Edit2, GripVertical } from 'lucide-react';
 import { Photo, Movie } from '../types';
 
 export default function Hobbies() {
+  const { t } = useApp();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const movieFileInputRef = useRef<HTMLInputElement>(null);
@@ -92,12 +94,14 @@ export default function Hobbies() {
               <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent">
                 <Camera size={16} />
               </div>
-              <h2 className="text-xs uppercase tracking-[0.2em] font-extrabold text-brand-accent">Beyond Screens</h2>
+              <h2 className="text-xs uppercase tracking-[0.2em] font-extrabold text-brand-accent">{t('镜头之外', 'Beyond Screens')}</h2>
             </div>
-            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight italic">Capturing <span className="text-brand-accent">stillness</span>.</h3>
+            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight italic dark:text-white">
+              {t('定格', 'Capturing')} <span className="text-brand-accent">{t('静止', 'stillness')}</span>.
+            </h3>
           </div>
-          <p className="text-brand-text/50 max-w-sm text-sm font-medium">
-            Personal photography documenting logic, symmetry, and atmosphere. Drag to reorder, click to add or rename.
+          <p className="text-brand-text/50 dark:text-white/40 max-w-sm text-sm font-medium">
+            {t('个人摄影作品，记录逻辑、对称和氛围。拖拽可排序，点击可添加或重命名。', 'Personal photography documenting logic, symmetry, and atmosphere. Drag to reorder, click to add or rename.')}
           </p>
         </div>
         
@@ -223,8 +227,8 @@ export default function Hobbies() {
                   <ChevronRight size={24} />
                 </button>
              </div>
-             <div className="text-[10px] uppercase font-extrabold tracking-[0.3em] text-brand-text/20">
-               {photos.length > 0 ? 'Swipe or use buttons to navigate' : 'Start by adding your first photo'}
+            <div className="text-[10px] uppercase font-extrabold tracking-[0.3em] text-brand-text/20 dark:text-white/10">
+               {photos.length > 0 ? t('滑动或使用按钮导航', 'Swipe or use buttons to navigate') : t('开始添加你的第一张照片', 'Start by adding your first photo')}
              </div>
           </div>
         </div>
@@ -362,15 +366,15 @@ export default function Hobbies() {
               <div className="p-2 rounded-lg bg-brand-accent/10 text-brand-accent">
                 <Film size={16} />
               </div>
-              <h2 className="text-xs uppercase tracking-[0.2em] font-extrabold text-brand-accent">AIGC Showcase</h2>
+              <h2 className="text-xs uppercase tracking-[0.2em] font-extrabold text-brand-accent">{t('AIGC 展示', 'AIGC Showcase')}</h2>
             </div>
-            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight">Zhang Ziyi <span className="text-brand-accent font-display font-medium">Memoir</span>.</h3>
+            <h3 className="text-5xl md:text-7xl font-extrabold tracking-tight dark:text-white">Zhang Ziyi <span className="text-brand-accent font-display font-medium">{t('精彩瞬间', 'Memoir')}</span>.</h3>
           </div>
           <a 
             href="https://likangwei110-pixel.github.io/zhangziyi-memoir/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="pill bg-white border-brand-accent/20 hover:bg-brand-accent hover:text-white transition-all"
+            className="pill bg-white dark:bg-zinc-900 border-brand-accent/20 hover:bg-brand-accent hover:text-white transition-all"
           >
             <Sparkles size={14} />
             <span className="text-xs font-bold uppercase tracking-widest">Live Experience</span>
@@ -385,7 +389,7 @@ export default function Hobbies() {
           onChange={handleMovieFileChange}
         />
 
-        <div className="bg-white/50 border border-black/5 rounded-[48px] p-8 md:p-16">
+        <div className="bg-white/50 dark:bg-zinc-950/50 border border-black/5 dark:border-white/5 rounded-[48px] p-8 md:p-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {memoirMovies.map((movie, i) => (
               <motion.div 
@@ -442,7 +446,7 @@ export default function Hobbies() {
                 {editingMovieId === i ? (
                   <input 
                     autoFocus
-                    className="text-lg font-bold bg-white/50 rounded px-2 py-1 outline-none border border-brand-accent/20"
+                    className="text-lg font-bold bg-white/50 dark:bg-zinc-800/50 rounded px-2 py-1 outline-none border border-brand-accent/20 dark:text-white"
                     defaultValue={movie.title}
                     onBlur={(e) => updateMovieTitle(i, e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && updateMovieTitle(i, (e.target as HTMLInputElement).value)}
