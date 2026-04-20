@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Sora", sans-serif;
+  --font-sans: "Outfit", sans-serif;
+  --color-brand-bg: #FDFCF6;
+  --color-brand-text: #1A1A1A;
+  --color-brand-accent: #FF6B35; /* Primary Orange */
+  --color-brand-secondary: #D72638; /* Red for gradients */
+  --radius-xl: 24px;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-text selection:bg-brand-accent selection:text-white;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-black/5;
+  }
+  
+  .pill {
+    @apply rounded-full px-4 py-1 flex items-center gap-2 border border-black/5 bg-white shadow-sm;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap');
